@@ -150,14 +150,13 @@ class Menu:
 
         self.colors = {
             'black': (0, 0, 0),
-            'background': (125, 112, 113),
             'text': (223, 246, 245)
         }
 
         self.content_space = 15
-        self.font = pygame.font.Font('data/font/font.ttf', 20)
-        self.title_font = pygame.font.Font('data/font/font.ttf', 30)
-        self.title_render = self.title_font.render(self.title, True, self.colors['text'], self.colors['background'])
+        self.font = pygame.font.Font('data/font/font.ttf', 30)
+        self.title_font = pygame.font.Font('data/font/font.ttf', 40)
+        self.title_render = self.title_font.render(self.title, True, self.colors['text'])
 
         self.width = self.title_render.get_width()
         self.height = self.title_render.get_height() + self.content_space

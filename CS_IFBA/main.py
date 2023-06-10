@@ -28,7 +28,7 @@ class Game:
         self.render_surface = pygame.Surface(self.render_dimensions)
 
         self.input = []
-        self.music_player = MusicPlayer(self.screen)
+        #self.music_player = MusicPlayer(self.screen)
         self.background = Background(self.screen_dimensions)
         self.active_scene = scene.MainMenuScene()
 
@@ -46,9 +46,8 @@ class Game:
 
             self.screen.blit(pygame.transform.scale(self.render_surface, self.screen_dimensions), (0, 0))
 
-            self.music_player.handle_events()
-            self.music_player.update(self.screen)
-           # self.background.update(self.screen)
+            #self.music_player.handle_events()
+            #self.music_player.update(self.screen)
 
 
             if self.active_scene.next_scene:

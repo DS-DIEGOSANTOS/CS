@@ -1,6 +1,8 @@
 import pygame, threading, json, random, logging
 from . import player, map, shadow_caster, hud, menu
 from socket import AF_INET, socket, SOCK_STREAM
+import tkinter as tk
+from tkinter import messagebox
 
 
 logging.basicConfig(
@@ -43,8 +45,8 @@ class MainScene:
 
         self.hud = hud.Hud(self.player)
 
-    def update(self, surface, input):
-        self.render_surface.fill(self.colors['background'])
+    def update(self, surface, input, background_surface):
+        self.render_surface.fill((125, 112, 113))
 
         self.handle_input(input)
 
@@ -136,7 +138,7 @@ class HostScene(MainScene):
         self.accept_thread = threading.Thread(target=self.accept_new_connections)
         self.accept_thread.start()
 
-    def update(self, surface, input):
+    def update(self, surface, input, background_surface):
         self.render_surface.fill(self.colors['background'])
 
         self.handle_input(input)
@@ -260,6 +262,7 @@ class HostScene(MainScene):
                     disconnection_info = {'disconnect': client_index_whole_list}
                     self.broadcast(self.build_message(disconnection_info))
                     log(f'{self.addresses[client]} disconnected')
+                    print(f'{self.addresses[client]} disconnected')
                     break
 
             except json.JSONDecodeError as e:
@@ -348,7 +351,7 @@ class ClientScene(MainScene):
 
         self.send(self.build_message(self.client_info))
 
-    def update(self, surface, input):
+    def update(self, surface, input, background_surface):
         self.render_surface.fill(self.colors['background'])
 
         self.handle_input(input)
@@ -472,6 +475,12 @@ class ClientScene(MainScene):
     def stop(self):
         self.send('{quit}')
         self.client_socket.close()
+        pygame.display.set_caption("Jogador Morto")
+
+        # Cria um pop-up exibindo a mensagem
+        message = "Jogador Morto"
+        messagebox.showinfo("Game Over", message)
+
         self.connected = False
 
 
@@ -502,12 +511,10 @@ class MainMenuScene(MenuScene):
         self.input_image = pygame.image.load('data/sprites/icons/menu_input.png')
         self.host_image = pygame.image.load('data/sprites/icons/menu_button_host.png')
         self.join_image = pygame.image.load('data/sprites/icons/menu_button_join.png')
-        self.settings_image = pygame.image.load('data/sprites/icons/menu_button_settings.png')
 
         self.menu_content = [
             menu.Button('host', self.host_image.get_rect(), image=self.host_image),
             menu.Button('join', self.join_image.get_rect(), image=self.join_image),
-            menu.Button('settings', self.settings_image.get_rect(), image=self.settings_image)
         ]
 
         self.host_clicked = 0
@@ -518,12 +525,13 @@ class MainMenuScene(MenuScene):
         self.join_port_error = False
         self.join_connect_error = False
 
-        self.menu = menu.Menu('center', (100, 50), 'MAIN MENU', self.menu_content)
+        self.menu = menu.Menu('left', (100, 50), 'CS-IFBA', self.menu_content)
 
         MenuScene.__init__(self, self.menu)
 
     def update(self, surface, input, background_surface):
         self.render_surface.blit(background_surface, (0, 0))
+
         self.handle_input(input)
 
         # update
@@ -667,12 +675,12 @@ class CreateHostScene(MenuScene):
         self.team_same = False
         self.team_empty = False
 
-        self.menu = menu.Menu('center', (100, 50), 'host new game ', self.menu_content)
+        self.menu = menu.Menu('left', (100, 50), 'new game ', self.menu_content)
 
         MenuScene.__init__(self, self.menu)
 
-    def update(self, surface, input):
-        self.render_surface.fill(self.colors['background'])
+    def update(self, surface, input, background_surface):
+        self.render_surface.blit(background_surface, (0, 0))
 
         self.handle_input(input)
 
@@ -785,7 +793,7 @@ class CreateJoinScene(MenuScene):
             menu.Button('join', self.join_image.get_rect(), image=self.join_image)
         ]
 
-        self.menu = menu.Menu('center', (100, 50), f'join {host_name}´s game', self.menu_content)
+        self.menu = menu.Menu('left', (100, 50), f'join {host_name}´s game', self.menu_content)
 
         self.name_empty = False
         self.name_long = False
@@ -795,8 +803,8 @@ class CreateJoinScene(MenuScene):
 
         MenuScene.__init__(self, self.menu)
 
-    def update(self, surface, input):
-        self.render_surface.fill(self.colors['background'])
+    def update(self, surface, input, background_surface):
+        self.render_surface.blit(background_surface, (0, 0))
 
         self.handle_input(input)
 
