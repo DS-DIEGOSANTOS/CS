@@ -1,9 +1,11 @@
-10.06.23 16:15:19 DEBUG: found game session
-10.06.23 16:15:27 DEBUG: got damage message from server
-10.06.23 16:15:27 DEBUG: containing damage
-10.06.23 16:15:31 DEBUG: got damage message from server
-10.06.23 16:15:31 DEBUG: containing damage
-10.06.23 16:15:32 DEBUG: got damage message from server
-10.06.23 16:15:32 DEBUG: containing damage
-10.06.23 16:15:32 DEBUG: got damage message from server
-10.06.23 16:15:32 DEBUG: con10.06.23 16:15:310.06.23 16:15:32 DEBUG: connection failed
+10.06.23 16:19:12 DEBUG: found game session
+10.06.23 16:19:17 DEBUG: got damage message from server
+10.06.23 16:19:17 DEBUG: containing damage
+10.06.23 16:19:17 DEBUG: got damage message from server
+10.06.23 16:19:17 DEBUG: containing damage
+10.06.23 16:19:19 DEBUG: got damage message from server
+10.06.23 16:19:1910.06.23 16:19:19 DEBUG: go10.06.23 16:19:19 DEBUG: got 10.06.23 16:19:19 DEBUG: got damage message fom player
+10.06.23 16:19:19 DEBUG: ('127.0.0.1', 55887) disconnected
+from server
+10.06.23 16:19:19 DEBUG: containing damage
+10.06.23 16:19:19 DEBUG: connection failed

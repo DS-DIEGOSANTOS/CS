@@ -1,7 +1,6 @@
 import pygame, threading, json, random, logging
 from . import player, map, shadow_caster, hud, menu
 from socket import AF_INET, socket, SOCK_STREAM
-import tkinter as tk
 from tkinter import messagebox
 
 
