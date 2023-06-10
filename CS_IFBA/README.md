@@ -1,7 +1,8 @@
-# CsLow
+# Cs-ifba
 pygame top down shooter
 
 # dependencies
 pygame,
 scipy,
-shapely
+shapely,
+messagebox
